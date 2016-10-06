@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - pusher test</title>
+    <script src="../../js/react.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/babel">
+        var Pusher = React.createClass({
+            buttonClick: function(){
+                //ThePushers.updateValue(this.props.myIndex);
+                console.log(this.props.myIndex);
+                console.log(this.refs.pusherInput.value)
+                this.props.updateFunction(this.refs.pusherInput.value, this.props.myIndex)
+            },
+            render: function (){
+                return(<div className="pusher"><input ref="pusherInput" type="text" defaultValue={this.props.defaultValue} />
+                        <br />
+                        <button onClick={this.buttonClick} ref="pusherButton" value={this.props.label} >{this.props.label}</button></div>
+                        );
+            }
+
+        })
+
+        var ThePushers = React.createClass({
+            getInitialState: function(){
+                return{
+        	       pushers: [ ["label1", "val1"], 
+        				["label1.5", "val1.5"], 
+        				["label2", "val2"], 
+        				["label3", "val3"], 
+        				["label4", "val4"]]
+                    }
+            },
+            updateValue: function(val, i){
+                console.log("updateValue val/index: " + val + " " + i);
+                var arr = this.state.pushers;
+                
+                arr[i][1] = val;
+                console.log(arr[i][1]);
+                console.log(arr);
+                this.setState({pushers: arr});
+
+            },
+            buttonClick: function(index){
+                console.log("index: " + index);
+
+            },
+            render: function() {
+            console.log("rendering ThePushers")
+                var arr, pushersArr,  takersArr;
+                arr= this.state.pushers;
+                pushersArr = [];
+                takersArr = [];
+                for(var i=0; arr.length > i; i++){
+                    pushersArr.push(<Pusher key={i} myIndex={i} label={arr[i][0]}  updateFunction={this.updateValue} defaultValue={arr[i][1]} />);
+                    takersArr.push(<Taker key={"a"+i}>{arr[i][1]}</Taker>);
+
+                }
+                return (<div>
+                            <div id="pushers">{pushersArr}</div>
+                            <div id="takers">{takersArr}</div>
+                        </div>);
+            }
+        });
+
+        var Taker = React.createClass({
+
+            render: function (){
+                return(<div className="taker">{this.props.children}<br /></div>
+                        );
+            }
+
+        })
+
+        ReactDOM.render(
+        	<div>
+        		<ThePushers />
+        	</div>
+    	, document.getElementById('container'));
+    </script>
+
+</body>
+</html>

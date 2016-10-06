@@ -1,0 +1,50 @@
+@import "normalize";
+@import "grid";
+@import "themes/default/master";
+
+#container {
+	margin: 0;
+	width : 100%;
+	background-color: #000000;
+	
+	#pushers{
+		position: absolute;
+		left: 0;
+		margin: 2px;
+		background-color: #99ff99;
+		width: 40%;
+		
+		.setter{
+			 right: 0;
+			 border-bottom: 1px;
+			 
+			 .set-text{
+			 	width: 100%;
+			 	
+			 }
+			 height: 50px;
+			 
+			 .set-button{
+			  	width: 20px;
+			 }
+			 
+		}
+	}
+	
+	$font-stack: Verdana, sans-serif;
+
+	#takers{
+		position: absolute;
+		background-color: #ff99cc;
+		right: 0;
+		top: 0;
+		font: 200% $font-stack;
+		text-align: right;
+		width :40%;
+		 .taker{
+		 	height: 55px;
+		 }
+		
+	}
+
+}

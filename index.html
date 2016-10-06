@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - setter test</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <script type="text/babel">
+        var Pusher = React.createClass({
+
+
+
+        })
+        var ThePushers = React.createClass({
+        	setters: [ ["label1", "val1"], 
+        				["label1.5", "val1.5"], 
+        				["label2", "val2"], 
+        				["label3", "val3"], 
+        				["label4", "val4"]]
+            render: function() {
+                return (<h2>This is a simple component</h2>);
+            }
+        });
+        ReactDOM.render(
+        	<div>
+        		<ThePushers />
+        	</div>
+    	, document.getElementById('container'));
+    </script>
+
+</body>
+</html>
